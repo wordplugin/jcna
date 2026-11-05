@@ -1,0 +1,10 @@
+/* 静的版での表示修正 */
+
+/* トップページ: 900px 以下では固定ヘッダー（45px / 600px 以上は 63px）が
+   メインビジュアルに重なるため、その分だけ下げる */
+@media screen and (max-width: 900px) {
+  .mv { margin-top: 45px; }
+}
+@media screen and (min-width: 600px) and (max-width: 900px) {
+  .mv { margin-top: 63px; }
+}
