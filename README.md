@@ -17,6 +17,12 @@ https://www.jcna.or.jp/ （WordPress）を 2026-11-05 時点で取得し、GitHu
 - WordPress の動的エンドポイント（wp-json, oEmbed, xmlrpc, RSS フィード, shortlink）への `<link>` を削除
 - グローバルナビの「表示中ページ」ハイライト（`c-gnav__link current`）を各ページの HTML に直接付与。元サイトの JS は絶対パスのリンクを前提に判定しているため、相対パスにした静的版では効かないため。対応: 団体概要=`outline/`、普及活動=`activity/` `lecture/`、JCN大賞=`award/`、カーボンニュートラル・アドバイザー=`cn/`、記事=`blog/` `news/`、お問い合わせ=`contact/`
 
+## 表示速度のための調整
+
+- 各ページの CSS（`wp-content/cache/autoptimize/css/*.css` と `wp-content/themes/jcna/css/static-fixes.css`）は HTML の `<style>` に埋め込んでいます（レンダリングブロックの解消）。CSS を直すときは、元の CSS ファイルではなく各 HTML の `<style>` を編集してください。
+- 使っていない WordPress の絵文字スクリプト（wp-emoji）と郵便番号検索（AjaxZip3）は読み込みをやめています。
+- Elfsight のカレンダー（`platform.js`）は、ウィジェットが画面に近づいたとき、またはスクロール・タップなどの操作があったときに読み込みます。
+
 ## 静的化に伴う制限
 
 - ログイン、会員登録、パスワード回復、投稿フォームなど、WordPress のサーバー処理が必要な機能は動きません
