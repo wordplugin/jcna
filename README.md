@@ -21,7 +21,9 @@ https://www.jcna.or.jp/ （WordPress）を 2026-11-05 時点で取得し、GitHu
 
 - 各ページの CSS（`wp-content/cache/autoptimize/css/*.css` と `wp-content/themes/jcna/css/static-fixes.css`）は HTML の `<style>` に埋め込んでいます（レンダリングブロックの解消）。CSS を直すときは、元の CSS ファイルではなく各 HTML の `<style>` を編集してください。
 - 使っていない WordPress の絵文字スクリプト（wp-emoji）と郵便番号検索（AjaxZip3）は読み込みをやめています。
-- Elfsight のカレンダー（`platform.js`）は、ウィジェットが画面に近づいたとき、またはスクロール・タップなどの操作があったときに読み込みます。
+- Elfsight のカレンダー（`platform.js`）は、ページの読み込み完了後、ウィジェットが画面に近づいたとき、またはスクロール・タップなどの操作があったときに読み込みます。
+- 画像は WebP 版（同名の `.webp`）を表示に使っています。画像を差し替えるときは WebP も作り直してください。
+- 日本語フォントは `*-core`（サイトで使っている文字）と `*-ext`（それ以外）に分けてあり、ページは通常 core だけを読み込みます。core にない文字は ext から自動で読み込まれます。
 
 ## 静的化に伴う制限
 
@@ -29,4 +31,4 @@ https://www.jcna.or.jp/ （WordPress）を 2026-11-05 時点で取得し、GitHu
 - お問い合わせフォーム（`/contact/`、`/cn/`、`/lecture/`）は Google フォームの埋め込みなので、静的サイトでもそのまま送信できます
 - サイト内検索は動きません
 - 外部サービス（Google Analytics、YouTube 埋め込み、CDN スクリプトなど）は元のURLのまま読み込みます
-- 元サイトの CSS が参照している一部の Web フォント（`NotoSansCJKjp-*.woff` など）は、元サーバーでも 404 のため含まれていません
+- 元サイトの CSS には、存在しないフォントファイル（`css/fonts/` 以下など、元サーバーでも 404）を指す `@font-face` がありました。表示を遅らせるだけなので削除しています
